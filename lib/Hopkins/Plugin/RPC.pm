@@ -85,6 +85,8 @@ sub DESTROY
 {
 	my $self = shift;
 
+	return if not $self->kernel;
+
 	$self->kernel->post('rpc.soap'	=> 'SHUTDOWN');
 	$self->kernel->post(rpc			=> 'shutdown');
 }
