@@ -18,7 +18,7 @@ interface to the job server.
 
 =cut
 
-use POE;
+use POE qw(Component::Server::SOAP);;
 
 use Class::Accessor::Fast;
 
@@ -45,6 +45,21 @@ qw/
 	queue_start_waitchk
 	queue_stop_waitchk
 /;
+
+# prevent perl from bitching and complaining about prototype
+# mismatches and constant subroutine redefinitions.  the
+# warnings pragma doesn't prevent ALL of them from spewing,
+# so we have to get raunchy with perl by defining them at
+# runtime with a localized no-op warn handler.
+
+{
+	local $SIG{__WARN__} = sub { 1 };
+
+	# forcefully disable the unavoidable debugging output
+	# from POE::Component::Server::SOAP.
+
+	eval q/sub POE::Component::Server::SOAP::DEBUG () { 0 }/;
+}
 
 =head1 METHODS
 
