@@ -3,11 +3,11 @@ package Hopkins::Plugin::RPC;
 use strict;
 use warnings;
 
-our $VERSION = '0.900';
+our $VERSION = '0.900_01';
 
 =head1 NAME
 
-Hopkins::Plugin::RPC - hopkins RPC session
+Hopkins::Plugin::RPC - SOAP interface to Hopkins
 
 =head1 DESCRIPTION
 

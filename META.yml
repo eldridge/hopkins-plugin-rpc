@@ -7,7 +7,8 @@ license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-name: Hopkins-Plugin-RPC
+name: Hopkins::Plugin::RPC
+abstract: SOAP interface to Hopkins
 no_index:
   directory:
     - inc
@@ -19,4 +20,4 @@ requires:
   String::Escape: 2002.001
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.900
+version: 0.900_01
