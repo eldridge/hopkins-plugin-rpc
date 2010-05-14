@@ -158,7 +158,7 @@ sub enqueue
 
 	Hopkins->log_debug("enqueue request received from $client for $name");
 
-	my $rv = $kernel->call(manager => enqueue => $name => $opts);
+	my $rv = $kernel->call(manager => enqueue => $name => $opts || {});
 
 	for ($rv) {
 		# success!  the task has been queued!
@@ -234,7 +234,7 @@ sub status
 		$status->{queues}->{$queue->name} =
 		{
 			concurrency	=> $queue->concurrency,
-			queued		=> $queue->tasks->Length,
+			queued		=> $queue->works->Length,
 			status		=> $queue->status_string
 		};
 
