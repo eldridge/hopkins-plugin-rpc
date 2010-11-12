@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -15,13 +15,10 @@ via the SOAP RPC session that the hopkins daemon exposes.
 
 =head1 SYNOPSIS
 
-=item status
-
-=item enqueue <task name> [ -o opt1=val1 -o opt1=val2 -o opt2=val3 ... ]
-
-=item queue start <queue name>
-
-=item queue stop <queue name>
+    $ hopkins status
+    $ hopkins enqueue <task name> [ -o opt1=val1 -o opt1=val2 -o opt2=val3 ... ]
+    $ hopkins queue start <queue name>
+    $ hopkins queue stop <queue name>
 
 =cut
 
@@ -63,14 +60,6 @@ if (scalar @ARGV == 0) {
 	handle_request(shift, @ARGV);
 }
 
-=head1 SUBROUTINES
-
-=over 4
-
-=item handle_request
-
-=cut
-
 sub handle_request
 {
 	my @action	= ();
@@ -93,10 +82,6 @@ sub handle_request
 		pod2usage({ -message => $message });
 	}
 }
-
-=item handler
-
-=cut
 
 sub handler
 {
@@ -121,24 +106,10 @@ sub handler
 	return $ref->{$name};
 }
 
-=back
-
-=head1 HANDLERS
-
-=over 4
-
-=item hopkins_status
-
-=cut
-
 sub hopkins_status
 {
 	return $proxy->status();
 }
-
-=item hopkins_enqueue
-
-=cut
 
 sub hopkins_enqueue
 {

@@ -3,8 +3,6 @@ package Hopkins::Plugin::RPC;
 use strict;
 use warnings;
 
-our $VERSION = '0.900_01';
-
 =head1 NAME
 
 Hopkins::Plugin::RPC - SOAP interface to Hopkins
@@ -61,14 +59,6 @@ qw/
 	eval q/sub POE::Component::Server::SOAP::DEBUG () { 0 }/;
 }
 
-=head1 METHODS
-
-=over 4
-
-=item new
-
-=cut
-
 sub new
 {
 	my $self = shift->SUPER::new(@_);
@@ -106,10 +96,6 @@ sub DESTROY
 	$self->kernel->post(rpc			=> 'shutdown');
 }
 
-=item start
-
-=cut
-
 sub start
 {
 	my $self	= $_[OBJECT];
@@ -128,20 +114,12 @@ sub start
 	$kernel->post('rpc.soap' => ADDMETHOD => rpc => $_) foreach @procedures;
 }
 
-=item stop
-
-=cut
-
 sub stop
 {
 	my $kernel = $_[KERNEL];
 
 	$kernel->post('rpc.soap' => DELMETHOD => rpc => $_) foreach @procedures;
 }
-
-=item enqueue
-
-=cut
 
 sub enqueue
 {
@@ -506,8 +484,6 @@ sub queue_stop_waitchk
 		}
 	}
 }
-
-=back
 
 =head1 AUTHOR
 
